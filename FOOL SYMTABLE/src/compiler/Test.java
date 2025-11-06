@@ -27,14 +27,14 @@ public class Test {
         System.out.println("");
 
         System.out.println("Visualizing AST.");
-        new PrintASTVisitor().visit(ast);
+        new PrintEASTVisitor().visit(ast);
 
-//        System.out.println("Enriching AST via symbol table.");
-//        SymbolTableASTVisitor symtableVisitor = new SymbolTableASTVisitor(true); // use true to visualize the AST
-//        symtableVisitor.visit(ast);
-//        System.out.println("You had: "+symtableVisitor.stErrors+" symbol table errors.\n");
-//
-//        System.out.println("Visualizing Enriched AST.");
-//        new PrintEASTVisitor().visit(ast);
+        System.out.println("Enriching AST via symbol table.");
+        SymbolTableASTVisitor symtableVisitor = new SymbolTableASTVisitor(true); // use true to visualize the AST
+        symtableVisitor.visit(ast);
+        System.out.println("You had: "+symtableVisitor.stErrors+" symbol table errors.\n");
+
+        System.out.println("Visualizing Enriched AST.");
+        new PrintEASTVisitor().visit(ast);
     }
 }

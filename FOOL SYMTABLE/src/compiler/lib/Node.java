@@ -1,6 +1,6 @@
 package compiler.lib;
 
-public abstract class Node {
+public abstract class Node implements Visitable {
 	
 	int line=-1;  // line -1 means unset
 	

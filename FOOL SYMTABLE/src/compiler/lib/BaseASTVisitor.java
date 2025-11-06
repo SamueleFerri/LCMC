@@ -19,7 +19,7 @@ public class BaseASTVisitor<S> {
 		System.out.println(indent+extractNodeName(n.getClass().getName())+": "+s);
 	}
 
-	public S visit(Node n) {
+	public S visit(Visitable n) {
 		if (print) {
 			String temp = indent;
 			indent = (indent == null) ? "" : indent + "  ";
@@ -30,7 +30,7 @@ public class BaseASTVisitor<S> {
 			return visitByAcc(n);
 	}
 
-	S visitByAcc(Node n) { 
+	S visitByAcc(Visitable n) {
 		return n.accept(this);
 	}
 

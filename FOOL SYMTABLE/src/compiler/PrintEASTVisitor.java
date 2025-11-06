@@ -3,9 +3,9 @@ package compiler;
 import compiler.AST.*;
 import compiler.lib.*;
 
-public class PrintASTVisitor extends BaseASTVisitor<Void> {
+public class PrintEASTVisitor extends BaseEASTVisitor<Void> {
 
-	PrintASTVisitor() { super(true); }
+	PrintEASTVisitor() { super(true); }
 
 	@Override
 	public Void visitNode(ProgNode n) {
@@ -109,6 +109,7 @@ public class PrintASTVisitor extends BaseASTVisitor<Void> {
 	@Override
 	public Void visitNode(IdNode n) {
 		printNode(n,n.id);
+        if (n.entry != null) visit(n.entry);
 		return null;
 	}
 
@@ -116,13 +117,13 @@ public class PrintASTVisitor extends BaseASTVisitor<Void> {
 	public Void visitNode(CallNode n) {
 		printNode(n,n.id);
 		// for (Node arg : n.arglist) visit(arg);
+        if (n.entry != null) visit(n.entry);
 		return null;
 	}
+
+    @Override
+    public Void visitSTentry(STentry entry) {
+	    printSTentry("nestlev "+entry.nl);
+	    return null;
+    }
 }
-
-//@Override
-//public Void visitSTentry(STentry entry) {
-//	printSTentry("nestlev "+entry.nl);
-//	return null;
-//}
-

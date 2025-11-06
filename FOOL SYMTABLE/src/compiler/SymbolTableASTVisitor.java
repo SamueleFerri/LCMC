@@ -81,8 +81,11 @@ public class SymbolTableASTVisitor extends BaseASTVisitor<Void> {
 	@Override
 	public Void visitNode(ProgLetInNode n) {
 		if (print) printNode(n);
+        Map<String, STentry> hm = new HashMap<>();
+		symTable.add(hm);
 		for (Node dec : n.declist) visit(dec);
 		visit(n.exp);
+        symTable.remove(0);
 		return null;
 	}
 
@@ -90,44 +93,67 @@ public class SymbolTableASTVisitor extends BaseASTVisitor<Void> {
 	public Void visitNode(VarNode n) {
 		if (print) printNode(n,n.id);
 		visit(n.exp);
+        Map<String, STentry> hm = symTable.get(nestingLevel);
+        STentry entry = new STentry(nestingLevel);
+		if (hm.put(n.id, entry) != null) {
+            System.out.println("Var id " + n.id + " at line "+ n.getLine() +" already declared");
+            stErrors++;
+        }
 		return null;
 	}
 
 	@Override
 	public Void visitNode(FunNode n) {
 		if (print) printNode(n,n.id);
-		// for (ParNode par : n.parlist) visit(par);
+        Map<String, STentry> hm = symTable.get(nestingLevel);
+        STentry entry = new STentry(nestingLevel);
+        if (hm.put(n.id, entry) != null) {
+            System.out.println("Fun id " + n.id + " at line "+ n.getLine() +" already declared");
+            stErrors++;
+        }
+        nestingLevel++;
+        Map<String, STentry> hmn = new  HashMap<>();
+        symTable.add(hmn);
+        // for (ParNode par : n.parlist) visit(par);
 		for (Node dec : n.declist) visit(dec);
 		visit(n.exp);
+        symTable.remove(nestingLevel--);
 		return null;
 	}
 
-//	private STentry stLookup(String id) {}
+	private STentry stLookup(String id) {
+        int j = nestingLevel;
+	    STentry entry = null;
+        while (j >= 0 && entry == null) {
+            entry = symTable.get(j--).get(id);
+        }
+        return entry;
+    }
 	
 	@Override
 	public Void visitNode(IdNode n) {
 		if (print) printNode(n);
+        STentry entry = stLookup(n.id);
+        if (entry == null) {
+            System.out.println("Var id " + n.id + " at line "+ n.getLine() +" not declared");
+            stErrors++;
+        } else {
+            n.entry = entry;
+        }
 		return null;
 	}
 
 	@Override
 	public Void visitNode(CallNode n) {
 		if (print) printNode(n);
+        STentry entry = stLookup(n.id);
+        if (entry == null) {
+            System.out.println("Fun id " + n.id + " at line "+ n.getLine() +" not declared");
+            stErrors++;
+        } else {
+            n.entry = entry;
+        }
 		// for (Node arg : n.arglist) visit(arg);
 		return null;
 	}
 }
-
-//		Map<String, STentry> hm = new HashMap<>();
-//		symTable.add(hm);
-
-//		STentry entry = new STentry(nestingLevel);
-//		hm.put(n.id, entry)
-
-//			System.out.println("Var id " + n.id + " at line "+ n.getLine() +" already declared");
-
-//	int j = nestingLevel;
-
-//	STentry entry = null;
-
-//		entry = symTable.get(j--).get(id);
