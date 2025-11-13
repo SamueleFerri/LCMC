@@ -28,6 +28,9 @@ public class ASTGenerationSTVisitor extends FOOLBaseVisitor<Node> {
         
     @Override
 	public Node visit(ParseTree t) {
+        if (t == null){
+            return null;
+        }
         String temp=indent;
         indent=(indent==null)?"":indent+"  ";
         Node result = super.visit(t);
@@ -181,6 +184,3 @@ public class ASTGenerationSTVisitor extends FOOLBaseVisitor<Node> {
 		return n;
 	}
 }
-
-// if (t==null) return null;
-
