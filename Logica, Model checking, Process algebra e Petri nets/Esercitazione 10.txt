@@ -1,0 +1,115 @@
+-----------------------------------------------------------------------------
+ESERCIZI SU LOGICA, MODEL CHECKING, PROCESS ALGEBRA E PETRI NETS
+-----------------------------------------------------------------------------
+
+ATTENZIONE: non usare nomi di directory o files contenenti spazi!
+
+LOGICA PROPOSIZIONI
+
+Per ognuna delle seguenti formule dire se e', o meno, logicamente equivalente a 
+(-p \/ -q) => r.
+Giustificare la risposta: in caso negativo mostrare un modello che le distingua 
+(cioe' tale che una sia vera e l'altra sia falsa).
+q \/ (p \/ r) 
+(q \/ r) /\ (p \/ r)
+(p \/ r) /\ q
+-r => (p /\ q)
+
+Per ognuna delle seguenti formule dire se e', o meno, valida (una tautologia).
+Giustificare la risposta: in caso negativo mostrare un modello che la renda falsa.
+(p => q) \/ -q 
+(p => q) \/ -p 
+
+LOGICA PREDICATI
+
+Si consideri la seguente formula su P = {greater/2}, F={}, C={}
+\forall x \exists y greater(x,y) 
+Per ognuna dei seguenti modelli M dire se soddisfa, o meno, tale formula.
+- Il modello M che ha come universo di valori A = {a,b,c} e che considera
+il predicato "greater" essere T per le coppie (x,y) appartenenti a 
+{(a,b),(a,c),(b,c)}
+- Il modello M che ha come universo di valori A = {a,b,c} e che considera
+il predicato "greater" essere T per le coppie (x,y) appartenenti a 
+{(a,b),(b,a),(c,a)}
+- Il modello M che ha come universo di valori A l'insieme dei numeri naturali 
+e che considera il predicato "greater" essere T per le coppie (x,y) tali che y > x
+- Il modello M che ha come universo di valori A l'insieme dei numeri interi 
+negativi e che considera il predicato "greater" essere T per le coppie (x,y) 
+tali che y > x
+
+AUTOMI (LTS)
+
+Considerare l'automa contenuto nel file "esempio.adr".
+Per ognuna delle seguenti proprieta' dire se la proprieta' e' soddisfatta o no. 
+Giustificare la risposta. In particolare in caso di risposta negativa indicare 
+una traccia massimale che non soddisfi la proprieta'. 
+
+[] a
+(a \/ c) U b
+a U b
+()[](b \/ c)
+
+Considerare l'automa (nelle slides di lezione) contenuto in "mutualExclusion.adr".
+Usare il tool TINA NetDraw ed il comando "selt" per fare model checking delle 
+proprieta' (nelle slides di lezione):
+[](en1 => (-en2 U ex1)) /\ [](en2 => (-en1 U ex2))
+[](re1=>(<>en1)) /\ [](re2=>(<>en2))
+<>re1 /\ <>re2
+
+PROCESS ALGEBRA
+
+Considerare i sistemi specificati nei files PA1.lts e PA2.lts.
+Data una specifica costruire:
+- l'automa (LTS) di ogni componente
+- l'automa (LTS) globale ottenuto per composizione
+
+Considerare il sistema (nelle slides di lezione) specificato in
+"mutualExclusion.lts". Usare il tool LTSA ed il comando "gselt" per fare 
+model checking delle proprieta' (nelle slides di lezione) gia' considerate per
+la specifica diretta tramite automa mutualExclusion.adr: verificare che 
+l'automa generato dalla process algebra soddisfi le stesse proprieta' !
+
+PETRI NETS
+
+Considerare le Reti di Petri contenute nei files PN1.ndr, PN2.ndr e PN3.ndr.
+Data una Rete di Petri dire se e' bounded o meno e, in caso lo sia,   
+mostrare il marking graph da essa generato.
+(se la Rete di Petri non e' bounded il suo marking graph e' infinito!)
+
+Considerare il sistema (nelle slides di lezione) specificato in
+"diningPhilosopher.ndr". Usare il tool TINA NetDraw per generare il 
+marking graph e fare, su di esso, il model checking delle proprieta' 
+(nelle slides di lezione):
+---
+[](-(p1 /\ p3))
+due filosofi vicini non mangiano contemporaneamente
+---
+[]((-p8) => (<>p8))
+una forchetta in uso, verra'  rilasciata
+---
+<>p1
+il primo filosofo mangera' 
+---
+-(<>(p1 /\ p5))
+non si raggiunge uno stato in cui due filosofi lontani mangiano insieme
+
+-----------------------------------------------------------------------------
+ESERCIZIO PER CASA SU LOGICA E MODEL CHECKING
+-----------------------------------------------------------------------------
+
+LOGICA PROPOSIZIONI
+
+Per ognuna delle seguenti formule dire se e', o meno, logicamente equivalente a 
+(-p \/ -q) => r.
+Giustificare la risposta: in caso negativo mostrare un modello che le distingua 
+(cio  tale che una sia vera e l'altra sia falsa).
+(-q \/ -r) => p
+r \/ -(q => -p)
+
+AUTOMI (LTS)
+
+Considerare l'automa contenuto nel file "esempio.adr".
+Per ognuna delle seguenti proprieta' dire se la proprieta' vale o no. In caso di 
+risposta negativa indicare una traccia massimale che non soddisfi la proprieta'. 
+<>c 
+a U ()b

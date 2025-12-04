@@ -1,0 +1,20 @@
+p 110.0 265.0 p2 0 w
+p 30.0 50.0 p0 1 n
+p 195.0 50.0 p1 1 n
+t 30.0 150.0 t0 0 w n
+t 195.0 150.0 t1 0 w n
+t 110.0 150.0 t2 0 w n
+t 320.0 145.0 t3 0 w n
+e t3 p0 1 n
+e t3 p1 1 n
+e p2 t3 2 s
+e t1 p2 1 n
+e t2 p2 2 ne
+e t0 p2 1 n
+e p1 t1 1 n
+e p1 t2 1 n
+e p0 t2 1 n
+e p0 t0 1 n
+h PN1
+
+

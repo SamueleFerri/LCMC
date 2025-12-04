@@ -1,0 +1,10 @@
+MODEL CHECKING DI AUTOMI (LTS)
+
+Files .adr da aprire/modificare con TINA NetDraw.
+
+Per fare check di proprietà si genera un file "nomefile.ktz":
+Edit -> textify -> File -> export -> lts to ktz 
+E poi dal prompt dei comandi eseguire "selt nomefile.ktz -p"
+che lancia il model checker:
+- check viene fatto inserendo una formula di LTL seguita da ";"
+- inserire "quit" per uscire

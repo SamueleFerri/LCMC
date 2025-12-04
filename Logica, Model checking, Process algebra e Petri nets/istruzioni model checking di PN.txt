@@ -1,0 +1,21 @@
+PETRI NETS
+
+Files .ndr da aprire/modificare con TINA NetDraw.
+
+Per generare il marking graph si fa:
+Tools -> state space analysis -> OK
+Se la Petri Net è unbounded dà errore, altrimenti mostra il 
+marking graph in modo testuale. In questa finestra si può:
+- visualizzare il marking graph in modo grafico:
+bottone destro del mouse sulla finestra -> export -> aut (kts) ->
+(si apre una finestra nuova)
+bottone destro del mouse sulla finestra -> open file in nd ->
+(si riapre la stessa finestra dentro TINA Netdraw)
+Edit -> draw
+E poi rispondere "no" alla richiesta di salvataggio file e poi "OK" 
+- fare direttamente model checking del marking graph con "selt":
+bottone destro del mouse sulla finestra -> model check LTL
+
+Nota: nella modalità interattiva il comando "output fullproof;" attiva 
+la visualizzazione completa dei controesempi in caso la proprietà
+inserita sia falsa (come invocare selt con "-p" da linea di comando)

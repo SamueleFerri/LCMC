@@ -1,0 +1,18 @@
+commutatività e associatività di \/ ed /\
+es. f \/ (g \/ h) equiv a (f \/ g) \/ h
+
+distributività di /\ rispetto a \/
+f /\ (g \/ h) equiv a (f /\ g) \/ (f /\ h)
+
+distributività di \/ rispetto a /\
+f \/ (g /\ h) equiv a (f \/ g) /\ (f \/ h)
+
+De Morgan
+-(f \/ g) equiv a -f /\ -g
+cioè anche:
+-(f /\ g) equiv a -f \/ -g
+
+implicazione
+f => g equiv a -f \/ g
+cioè anche:
+f => g equiv a -g => -f

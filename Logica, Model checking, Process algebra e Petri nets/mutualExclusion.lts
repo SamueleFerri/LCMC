@@ -1,0 +1,19 @@
+USER1 = (re1 -> en1 -> ex1 -> USER1).
+USER2 = (re2 -> en2 -> ex2 -> USER2).
+
+CONTROLLER = ( re1 -> TURN1
+             | re2 -> TURN2 ),
+
+TURN1 = ( re2 -> en1 -> ex1 -> TURN2
+        | en1 -> ( re2 -> ex1 -> TURN2 
+                 | ex1 -> CONTROLLER
+                 )
+        ),
+
+TURN2 = ( re1 -> en2 -> ex2 -> TURN1
+        | en2 -> ( re1 -> ex2 -> TURN1
+                 | ex2 -> CONTROLLER
+                 )
+        ).
+
+||MUTUAL_EXCLUSION = ( USER1 || USER2 || CONTROLLER ).

@@ -1,0 +1,14 @@
+PROCESS ALGEBRA
+
+Files di testo .lts da aprire/modificare con tool LTSA.
+
+Per generare LTS componenti fare: Build -> Compile
+Successivamente per generare LTS composizione fare: Build -> Compose
+(andando sulla tab Draw si possono visualizzare gli LTS generati)
+
+Per fare check di proprietà si genera un file di testo "nomefile.aut":
+dopo aver fatto la "Compose" si va sul tab "Edit" e poi
+File -> Export...
+E poi del prompt dei comandi eseguire "gselt nomefile.ktz -p"
+che genera "nomefile.ktz" (tramite "ktzio nomefile.aut nomefile.ktz") 
+e poi lancia il model checker.
